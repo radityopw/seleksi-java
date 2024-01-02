@@ -1,15 +1,23 @@
 package com.radityopw.seleksi;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Peserta {
 
-	public final String kode;
-	public final int pilihanKe;
-	public final Double skor;
+	public String kode;
+	public List<Pilihan> daftarPilihan = new ArrayList<Pilihan>();
+	public short pilihanAktif = 1;
+	public short pilihanMax = 1;
 
-	public Peserta(String kode,int pilihanKe, Double skor){
-		this.kode = kode;
-		this.pilihanKe = pilihanKe;
-		this.skor = skor;
+	public boolean hasPilihan(){
+		if(pilihanAktif <= pilihanMax) return true;
+		return false;
 	}
 
-}	
+	public Pilihan pilihan(){
+		if(hasPilihan()) return daftarPilihan.get(pilihanAktif-1);
+		return null;
+	}
+}
+
+

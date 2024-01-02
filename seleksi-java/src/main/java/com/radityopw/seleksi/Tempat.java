@@ -1,14 +1,10 @@
 package com.radityopw.seleksi;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Tempat {
-	public final String kode;
-	public final String nama;
-	public final int ukuranMax;
-	public int ukuranSekarang;
-
-	public Tempat(String kode,String nama, int ukuranMax){
-		this.kode = kode;
-		this.nama = nama;
-		this.ukuranMax = ukuranMax;
-	}
+	public String kode;
+	public short ukuranMax;
+	public short ukuranSekarang = 0;
+	public List<Peserta> daftarPeserta = new ArrayList<Peserta>();
 }
