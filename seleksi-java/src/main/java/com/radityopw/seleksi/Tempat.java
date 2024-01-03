@@ -7,4 +7,10 @@ public class Tempat {
 	public short ukuranMax;
 	public short ukuranSekarang = 0;
 	public List<Peserta> daftarPeserta = new ArrayList<Peserta>();
+
+	public Peserta daftarkanPeserta(Peserta p){
+		
+
+		return null;
+	}
 }

@@ -11,6 +11,6 @@ public class Pilihan {
 	public short pilihanKe;
 	public BigDecimal skor;
 	public short status = Pilihan.ANTRI;
-	public Peserta peserta;
+	public String kodePeserta;
 
 }
