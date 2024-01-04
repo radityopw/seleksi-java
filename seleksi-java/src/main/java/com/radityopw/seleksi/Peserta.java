@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Collections;
 
 public class Peserta implements Comparable<Peserta> {
 
@@ -34,18 +35,22 @@ public class Peserta implements Comparable<Peserta> {
 	public static void prosesSeleksi() throws Exception{
 		// isi antrian;
 		antrianProsesPeserta.clear();
+		
 		Iterator<Peserta> daftarPesertaIterator = Peserta.getAll().iterator();
 		while(daftarPesertaIterator.hasNext()){
 			antrianProsesPeserta.add(daftarPesertaIterator.next());
 		}
-
+		
 		// proses antrian 
 
 		while(antrianProsesPeserta.size() > 0){
-			Peserta ps = antrianProsesPeserta.poll();
-			Tempat t = Tempat.get(ps.kodeTempat());
-			Peserta psDikeluarkan = t.daftarkanPeserta(ps);
-			ps = null;
+			Peserta ps = null;
+			Tempat t = null;
+			Peserta psDikeluarkan = null;
+			
+			ps = antrianProsesPeserta.poll();
+			if(ps != null) t = Tempat.get(ps.kodeTempat());
+			if(t != null) psDikeluarkan = t.daftarkanPeserta(ps);
 
 			if(psDikeluarkan != null){ 
 				if(psDikeluarkan.masihAdaPilihanAntri()){
@@ -54,6 +59,7 @@ public class Peserta implements Comparable<Peserta> {
 			}
 
 		}
+		
 	}
 
 	public final String kode;
@@ -103,9 +109,10 @@ public class Peserta implements Comparable<Peserta> {
 		return null;
 	}
 
-	public void tambahPilihan(Pilihan p){
+	private void tambahPilihan(Pilihan p){
 		pilihanMax++;
 		daftarPilihan.add(p);
+		Collections.sort(daftarPilihan);
 	}	
 
 	public void diterima(){
@@ -115,6 +122,10 @@ public class Peserta implements Comparable<Peserta> {
 	public void ditolak(){
 		daftarPilihan.get(pilihanAktif - 1).status = Pilihan.DITOLAK;
 		pilihanAktif++;
+	}
+
+	public String toString(){
+		return kode;
 	}
 }
 

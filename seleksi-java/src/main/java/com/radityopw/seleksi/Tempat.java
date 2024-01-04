@@ -34,6 +34,10 @@ public class Tempat {
 		this.ukuranMax = ukuranMax;
 	}
 
+	public List<Peserta> daftarPeserta(){
+		return daftarPeserta;
+	}
+
 	public boolean equals(Object o){
 		if(o instanceof Tempat){
 			Tempat t = (Tempat) o;
