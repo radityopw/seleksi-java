@@ -41,6 +41,7 @@ public class Peserta implements Comparable<Peserta> {
 	}
 	
 	public static Peserta get(String kode) throws Exception{
+		kode = kode.toUpperCase();
 		if(!daftarPeserta.containsKey(kode)) throw new Exception("Kode "+kode+" tidak ditemukan");
 		return daftarPeserta.get(kode);
 	}
@@ -95,7 +96,7 @@ public class Peserta implements Comparable<Peserta> {
 	private short pilihanMax = 0;
 
 	public Peserta(String kode){
-		this.kode = kode;
+		this.kode = kode.toUpperCase();
 		daftarPilihan = new ArrayList<Pilihan>();
 	}
 

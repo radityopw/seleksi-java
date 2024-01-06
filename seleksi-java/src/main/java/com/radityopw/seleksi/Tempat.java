@@ -24,11 +24,11 @@ public class Tempat {
 	
 	
 	public static Tempat get(String kode){
-		return daftarTempat.get(kode);
+		return daftarTempat.get(kode.toUpperCase());
 	}
 
 	public static void put(String kode,Tempat t){
-		daftarTempat.put(kode,t);
+		daftarTempat.put(kode.toUpperCase(),t);
 	}
 
 	public static Collection<Tempat> getAll(){
@@ -43,7 +43,7 @@ public class Tempat {
 	private final java.util.logging.Logger logger =  java.util.logging.Logger.getLogger(this.getClass().getName());
 
 	public Tempat(String kode,short ukuranMax){
-		this.kode = kode;
+		this.kode = kode.toUpperCase();
 		this.ukuranMax = ukuranMax;
 	}
 

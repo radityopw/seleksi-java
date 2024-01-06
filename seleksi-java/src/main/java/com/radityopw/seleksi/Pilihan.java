@@ -16,9 +16,9 @@ public class Pilihan implements Comparable<Pilihan> {
 	public final String kode;
 
 	public Pilihan(String kodePeserta, short pilihanKe,String kodeTempat, BigDecimal skor){
-		this.kodePeserta = kodePeserta;
+		this.kodePeserta = kodePeserta.toUpperCase();
 		this.pilihanKe = pilihanKe;
-		this.kodeTempat = kodeTempat;
+		this.kodeTempat = kodeTempat.toUpperCase();
 		this.skor = skor;
 		this.kode = this.kodePeserta+"-"+this.pilihanKe;
 	}
