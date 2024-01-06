@@ -8,6 +8,9 @@ public class TempatTest{
 
 	@Test
 	public void cekTempatObject(){
+		Tempat.reset();
+
+
 		Tempat t = new Tempat("1",(short)2);
 		assertEquals(t.kode,"1");
 		assertEquals(t.ukuranMax,(short)2);
@@ -21,6 +24,8 @@ public class TempatTest{
 
 	@Test
 	public void cekTempatClass(){
+		Tempat.reset();
+
 		Tempat t = new Tempat("1",(short)2);
 		
 		Tempat.put("1",t);

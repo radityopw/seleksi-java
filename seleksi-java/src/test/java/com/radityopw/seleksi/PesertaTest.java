@@ -9,6 +9,8 @@ public class PesertaTest{
 
 	@Test
 	public void cekPesertaObject(){
+		Peserta.reset();
+
 		Peserta p1 = new Peserta("K1");
 		Peserta p2 = new Peserta("K1");
 		Peserta p3 = new Peserta("K3");
@@ -26,6 +28,9 @@ public class PesertaTest{
 
 	@Test
 	public void cekPesertaClass(){
+		Peserta.reset();
+
+
 		Pilihan p1 = new Pilihan("P1",(short)1,"K1", new BigDecimal("3.14"));
 		Pilihan p2 = new Pilihan("P1",(short)2,"K2", new BigDecimal("3.9"));
 		Pilihan p3 = new Pilihan("P1",(short)3,"K3", new BigDecimal("3.8"));

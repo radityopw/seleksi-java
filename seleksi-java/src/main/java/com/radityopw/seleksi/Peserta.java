@@ -3,16 +3,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.PriorityQueue;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Collections;
 
 public class Peserta implements Comparable<Peserta> {
 
-	private static final HashMap<String,Peserta> daftarPeserta = new HashMap<String,Peserta>();
-	private static final PriorityQueue<Peserta> antrianProsesPeserta = new PriorityQueue<Peserta>();
+	protected static HashMap<String,Peserta> daftarPeserta;
+	protected static List<Peserta> antrianProsesPeserta;
+	
+	static{
+		daftarPeserta = new HashMap<String,Peserta>();
+		antrianProsesPeserta = new ArrayList<Peserta>();
+	}
 
+
+	public static void reset(){
+
+		if(daftarPeserta != null){
+
+
+			for(int i=0;i<daftarPeserta.size();i++){
+				Peserta ps = daftarPeserta.get(i);
+				if(ps != null) ps.resetPilihan();
+			}
+
+			daftarPeserta.clear();
+		}else{
+			daftarPeserta = new HashMap<String,Peserta>();
+		}
+
+		if(antrianProsesPeserta != null){
+			antrianProsesPeserta.clear();
+		}else{
+			antrianProsesPeserta = new ArrayList<Peserta>();
+		}
+	}
+	
 	public static Peserta get(String kode) throws Exception{
 		if(!daftarPeserta.containsKey(kode)) throw new Exception("Kode "+kode+" tidak ditemukan");
 		return daftarPeserta.get(kode);
@@ -48,7 +75,7 @@ public class Peserta implements Comparable<Peserta> {
 			Tempat t = null;
 			Peserta psDikeluarkan = null;
 			
-			ps = antrianProsesPeserta.poll();
+			ps = antrianProsesPeserta.remove(0);
 			if(ps != null) t = Tempat.get(ps.kodeTempat());
 			if(t != null) psDikeluarkan = t.daftarkanPeserta(ps);
 
@@ -63,12 +90,21 @@ public class Peserta implements Comparable<Peserta> {
 	}
 
 	public final String kode;
-	private final List<Pilihan> daftarPilihan = new ArrayList<Pilihan>();
+	private List<Pilihan> daftarPilihan;
 	private short pilihanAktif = 1;
 	private short pilihanMax = 0;
 
 	public Peserta(String kode){
 		this.kode = kode;
+		daftarPilihan = new ArrayList<Pilihan>();
+	}
+
+	private void resetPilihan(){
+		if(daftarPilihan != null){
+			daftarPilihan.clear();
+		}else{
+			daftarPilihan = new ArrayList<Pilihan>();
+		}
 	}
 
 	public boolean equals(Object o){
@@ -125,8 +161,12 @@ public class Peserta implements Comparable<Peserta> {
 	}
 
 	public String toString(){
-		return kode;
+		String data = this.kode;
+		data+="(";
+		for(int i=0;i<daftarPilihan.size();i++){
+			data+=daftarPilihan.get(i).kodeTempat+"("+daftarPilihan.get(i).skor+"),";
+		}
+		data+=")";
+		return data;
 	}
 }
-
-

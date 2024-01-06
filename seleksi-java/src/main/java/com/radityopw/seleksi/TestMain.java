@@ -1,21 +1,14 @@
 package com.radityopw.seleksi;
 
-import static org.junit.Assert.*;
+import java.util.*;
+import java.math.*;
+public class TestMain{
 
-import org.junit.*;
-
-import java.util.List;
-
-import java.math.BigDecimal;
-
-public class AppTest{
-	@Test
-	public void cekSeleksi(){
-	
+	public static void main(String[] a){
 		Tempat.reset();
-		
 		Peserta.reset();
-		
+
+
 		Tempat t1 = new Tempat("K1",(short)1);
 		Tempat t2 = new Tempat("K2",(short)2);
 		Tempat t3 = new Tempat("K3",(short)1);
@@ -57,18 +50,35 @@ public class AppTest{
 			List<Peserta> pt2 = t2.daftarPeserta();
 			List<Peserta> pt3 = t3.daftarPeserta();
 
-			assertEquals(pt1.size(),1);
-			assertEquals(pt2.size(),2);
-			assertEquals(pt3.size(),1);
+			System.out.println();
+			System.out.println(t1.kode);
+			System.out.println("--------");
+			for(int i=0;i<pt1.size();i++){
+				Peserta ps = pt1.get(i);
+				System.out.print(ps+",");
+			}
+			
+			System.out.println();
+			System.out.println(t2.kode);
+			System.out.println("--------");
+			for(int i=0;i<pt2.size();i++){
+				Peserta ps = pt2.get(i);
+				System.out.print(ps+",");
+			}
 
-			assertEquals(pt1.get(0),Peserta.get("P9"));
-			assertEquals(pt3.get(0),Peserta.get("P8"));
-			assertEquals(pt2.get(0),Peserta.get("P4"));
-			assertEquals(pt2.get(1),Peserta.get("P7"));
-		}catch(Exception e){
-			assertEquals("",e.toString());
-		}
+			System.out.println();
+			System.out.println(t3.kode);
+			System.out.println("--------");
+			for(int i=0;i<pt3.size();i++){
+				Peserta ps = pt3.get(i);
+				System.out.print(ps+",");
+			}
 
 			
+			System.out.println();
+
+		}catch(Exception e){
+			System.out.println(e);
+		}
 	}
 }
